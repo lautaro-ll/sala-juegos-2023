@@ -28,14 +28,15 @@ export class LoginComponent implements OnInit {
     return this.loginForm.get('password');
   }
   error: string = "";
+  id:string = "";
 
   login() {
     this.autenticacionService.login(
       this.loginForm.get('mail')?.value!, 
       this.loginForm.get('password')?.value!)
-      .then(()=> {
-        this.usuariosService.updateLoginState(this.loginForm.get('mail')?.value!);
-        // this.limpiar();
+      .then((user)=> {
+        this.id = user?.user?.uid!;
+        this.usuariosService.updateLoginState(this.id);
         this.router.navigate(['']);
       })
       .catch((err) => {console.log(err)
