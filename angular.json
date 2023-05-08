@@ -108,7 +108,7 @@
             "ssr": false,
             "browserTarget": "sala-juegos-2023:build:production",
             "firebaseProject": "labo4-salajuegos-2023",
-            "firebaseHostingSite": "salajuegos-llemos"
+            "firebaseHostingSite": "labo4-salajuegos-2023"
           }
         }
       }

@@ -10,20 +10,26 @@ import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+//import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { RegistroComponent } from './registro/registro.component';
+import { BienvenidaComponent } from './bienvenida/bienvenida.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
-    QuienSoyComponent
+    QuienSoyComponent,
+    RegistroComponent,
+    BienvenidaComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
-    provideFirestore(() => getFirestore())
+    provideFirestore(() => getFirestore()),
+    //NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
