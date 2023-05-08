@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "labo4-salajuegos-2023": {
+      "hosting": {
+        "sala-juegos-2023": [
+          "salajuegos-llemos"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "labo4-salajuegos-2023"
+  }
+}
