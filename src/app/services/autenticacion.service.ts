@@ -14,4 +14,12 @@ export class AutenticacionService {
 
   logout() {
     return this.auth.signOut();
-  }}
+  }
+
+  async guardar(mail: string, password: string) {
+    return (await this.auth.createUserWithEmailAndPassword(mail, password)).user?.uid;
+  }
+
+}
+
+

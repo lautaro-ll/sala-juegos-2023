@@ -57,4 +57,20 @@ export class LoginComponent implements OnInit {
   goToRegistro() {
     this.router.navigateByUrl("registro");
   }
+
+  completarCampos(id:number) {
+    switch(id){
+      case 1:
+        this.error = '';
+        this.loginForm.controls['mail'].setValue('pepito@mail.com');
+        this.loginForm.controls['password'].setValue('123456');
+        break;
+      case 2:
+        this.error = '';
+        this.loginForm.controls['mail'].setValue('juanito@mail.com');
+        this.loginForm.controls['password'].setValue('123456');
+        break;
+    }
+  }
+
 }

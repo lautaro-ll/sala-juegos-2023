@@ -11,10 +11,6 @@ export class QuienSoyComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit(): void {
-    if(localStorage.getItem('usuario') != 'admin'){
-      console.log("sin permisos de ingreso");
-      //this.router.navigateByUrl('/login'); 
-    }
   }
 
 }

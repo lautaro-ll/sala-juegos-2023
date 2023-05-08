@@ -13,18 +13,17 @@ export class UsuariosService {
   
   private loginState = new BehaviorSubject('');
   currentLoginState = this.loginState.asObservable();
-  updateLoginState(mail: string) {
-    this.loginState.next(mail)
+  updateLoginState(id: string) {
+    this.loginState.next(id)
   }
   
   private coleccion : CollectionReference<DocumentData> = collection(this.firestore,'usuarios');
 
-  guardar(usuario:Usuario) {
+  async guardar(usuario:Usuario,id:string) {
     //addDoc(this.coleccionPeliculas, {nombre:"It"})
-    const documentoNuevo = doc(this.coleccion)
-    usuario.mail = documentoNuevo.id;
-
-    setDoc(documentoNuevo, usuario);
+    const documentoNuevo = doc(this.coleccion,id)
+    usuario.id = id;
+    setDoc(documentoNuevo, {...usuario});
   }
   
   traerSubscripcion(){
@@ -35,12 +34,12 @@ export class UsuariosService {
     //subscripcion.unsubscribe();
   }
 
-  async traer(mail:string){
+  async traer(id:string){
     const respuesta = collectionData(this.coleccion);
     var documentData: DocumentData = new Document();
     const querySnapshot = await getDocs(this.coleccion);
     querySnapshot.forEach((doc) => {
-      if(doc.id == mail) {
+      if(doc.id == id) {
         documentData = doc.data();
       }
     });
