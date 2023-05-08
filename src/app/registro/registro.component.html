@@ -1,27 +1,41 @@
 <body class="text-center">
     <main class="form-signin w-100 m-auto">
-        <form>
+        <form [formGroup]="regForm" (ngSubmit)="registrarse()">
             <!-- <img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
             <h1 class="h3 mb-3 fw-normal text-light">Registro de Usuario</h1>
-          
             <div class="form-floating">
-                <input type="email" class="form-control" id="floatingInput" placeholder="nombre@mail.com">
+                <input formControlName="nombre" type="text" class="form-control" id="floatingName" placeholder="Nombre">
+                <label for="floatingName">Nombre</label>
+            </div>
+            <ng-container *ngIf="nombre?.hasError('minlength')">
+                <small class="text-danger">El nombre debe ser mayor a 3 caracteres</small><br>
+            </ng-container>
+            <ng-container *ngIf="nombre?.hasError('pattern')">
+                <small class="text-danger">Fomato inválido</small>
+            </ng-container>
+            <div class="form-floating mt-2">
+                <input formControlName="mail" type="email" class="form-control" id="floatingInput" placeholder="nombre@mail.com">
                 <label for="floatingInput">Email</label>
             </div>
+            <ng-container *ngIf="mail?.hasError('email')">
+                <small class="text-danger">Fomato inválido</small>
+            </ng-container>
             <div class="form-floating">
-                <input type="password" class="form-control m-0 rounded-0" id="floatingPassword" placeholder="Contraseña">
+                <input formControlName="clave" type="password" class="form-control m-0 rounded-0" id="floatingPassword" placeholder="Contraseña">
                 <label for="floatingPassword">Contraseña</label>
             </div>
-
+            <ng-container *ngIf="clave?.hasError('minlength')">
+                <small class="text-danger">La clave debe tener mínimo {{clave?.getError('minlength').requiredLength}} caracteres</small>
+            </ng-container>
             <div class="form-floating">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Contraseña">
-                <label for="floatingPassword">Repetir Contraseña</label>
+                <input formControlName="repetirClave" type="password" class="form-control" id="floatingPassword2" placeholder="Contraseña">
+                <label for="floatingPassword2">Repetir Contraseña</label>
             </div>
 
             <button class="w-100 btn btn-lg btn-primary" type="submit">Registrarme</button>
         </form>
         <hr>
         <h6 class="text-secondary"> ¿Ya estás registrado? </h6>
-        <button class="w-100 btn btn-lg btn-secondary" type="submit">Iniciar Sesión</button>
+        <button class="w-100 btn btn-lg btn-secondary" type="submit" (click)="goToLogin()">Iniciar Sesión</button>
     </main>
 </body>

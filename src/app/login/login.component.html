@@ -1,21 +1,28 @@
 <body class="text-center">
     <main class="form-signin w-100 m-auto">
-        <form>
-            <!-- <img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
+
             <h1 class="h3 mb-3 fw-normal text-light">Inicio de Sesión</h1>
 
             <div class="form-floating">
-                <input type="email" class="form-control" id="floatingInput" placeholder="nombre@mail.com">
+                <input type="email" class="form-control" id="floatingInput" placeholder="nombre@mail.com" formControlName="mail">
                 <label for="floatingInput">Email</label>
             </div>
             <div class="form-floating">
-                <input type="password" class="form-control" id="floatingPassword" placeholder="Contraseña">
+                <input type="password" class="form-control" id="floatingPassword" placeholder="Contraseña" formControlName="password">
                 <label for="floatingPassword">Contraseña</label>
             </div>
+            <ng-container *ngIf="mail?.hasError('mail')">
+                <small class="text-danger">Fomato inválido</small>
+            </ng-container>
+            <ng-container *ngIf="password?.hasError('minlength')">
+                <small class="text-danger">La clave debe tener mínimo {{password?.getError('minlength').requiredLength}} caracteres</small>
+            </ng-container>
+            <p class="text-danger">{{error}}</p>
             <button class="w-100 btn btn-lg btn-primary" type="submit">Ingresar</button>
         </form>
         <hr>
         <h6 class="text-secondary"> ¿No estás registrado? </h6>
-        <button class="w-100 btn btn-lg btn-secondary" type="submit">Registro</button>
+        <button class="w-100 btn btn-lg btn-secondary" type="submit" (click)="goToRegistro()">Registro</button>
     </main>
 </body>
